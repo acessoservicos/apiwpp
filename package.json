@@ -1,0 +1,21 @@
+{
+  "name": "acesso-whatsapp",
+  "description": "API de automação do WhatsApp da Acesso",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "set NODE_ENV=dev && node ./bin/server.js",
+    "dev": "set NODE_ENV=dev && node --watch ./bin/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gean Victor Duque de Oliveira",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^8.0.2"
+  },
+  "devDependencies": {}
+}
