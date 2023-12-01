@@ -38,7 +38,6 @@ const schema = new Schema({
     cameras: [{
       type: mongoose.SchemaTypes.ObjectId,
       ref: "Resource",
-      required: false
     }],
     
     isJanitor: {
@@ -55,7 +54,6 @@ const schema = new Schema({
 
     observation: {
       type: String,
-      required: false
     }
 });
 

@@ -12,8 +12,7 @@ const schema = new Schema({
 
     dropId: {
         type: String,
-        default: null,
-        required: false
+        default: null
     },
 
     condominium: {

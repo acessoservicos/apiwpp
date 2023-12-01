@@ -1,7 +1,6 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const mongoosePaginate = require('mongoose-paginate-v2');
 const Schema = mongoose.Schema;
 
 const enumHelper = require('../helpers/enumHelper');
@@ -71,8 +70,5 @@ const schema = new Schema({
         required: true
     }
 });
-
-schema.plugin(mongoosePaginate);
-mongoose.model('Delivery', schema).paginate().then({});
 
 module.exports = mongoose.model('Delivery', schema);

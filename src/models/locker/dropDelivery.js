@@ -20,7 +20,6 @@ const schema = new Schema({
 
     deliveryDateTime: {
         type: Date,
-        required: false,
         default: null
     },
 

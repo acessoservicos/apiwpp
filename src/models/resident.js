@@ -46,13 +46,11 @@ const schema = new Schema({
 
     password: {
         type: String,
-        required: false
     },
 
     dropId: {
         type: String,
         default: null,
-        required: false
     },
 
     appStatus: {

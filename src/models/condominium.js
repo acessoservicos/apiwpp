@@ -40,7 +40,6 @@ const schema = new Schema({
 
     complement: {
         type: String,
-        required: false
     },
 
     neighbourhood: {
@@ -71,14 +70,12 @@ const schema = new Schema({
     },
 
     perimeter: {
-        type: { type: String, enum: ["Polygon"], required: false },
-        coordinates: { type: [[Number]], required: false },
-        required: false
+        type: { type: String, enum: ["Polygon"] },
+        coordinates: { type: [[Number]] },
     },
 
     startDate: {
         type: Date,
-        required: false
     },
 
     installationDate: {
@@ -107,29 +104,24 @@ const schema = new Schema({
     cnpj: {
         type: String,
         unique: true,
-        required: false
     },
 
     //alteraçao provisoria até implantar validação no frontend
     gpsMetersRange: {
         type: Number,
-        required: false
     },
 
     dropId: {
         type: String,
         default: null,
-        required: false
     },
 
     dropUsername: {
         type: String,
-        required: false
     },
 
     dropPassword: {
         type: String,
-        required: false
     },
 
     condominiumContract: {
@@ -177,7 +169,6 @@ const schema = new Schema({
 
     inlineId: {
         type: String,
-        required: false
     }
 });
 
@@ -185,13 +176,6 @@ schema.index({
     location: "2dsphere"
 }); // Necessário para cálculo de distâncias
 
-/*
-Referências:
-https://medium.com/@galford151/mongoose-geospatial-queries-with-near-59800b79c0f6
-https://docs.mongodb.com/manual/reference/operator/query/near/
-https://docs.mongodb.com/manual/core/2dsphere/
-https://stackoverflow.com/questions/23188875/mongodb-unable-to-find-index-for-geonear-query
-*/
 
 schema.plugin(mongoosePaginate);
 

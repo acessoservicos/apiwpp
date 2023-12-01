@@ -9,24 +9,20 @@ const schema = new Schema({
         required: true
     },
     extension: {
-        type: Number,
-        required: false
+        type: Number
     },
     dropId: {
         type: String,
         default: null,
-        required: false,
         unique: true
     },
     label: {
         type: String,
-        default: null,
-        required: false
+        default: null
     },
     observation: {
       type: String,
-      default: null,
-      required: false
+      default: null
     },
     floor: {
         type: mongoose.SchemaTypes.ObjectId,

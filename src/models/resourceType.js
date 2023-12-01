@@ -28,7 +28,6 @@ const schema = new Schema({
 
     propertyList: {
         type: Object,
-        required: false
     },
 
     resourceClass: {

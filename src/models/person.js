@@ -26,35 +26,28 @@ const schema = new Schema({
 
     foreign: {
         type: Boolean,
-        required: false,
         default: false
     },
     photo: {
         data: Buffer,
         contentType: String,
-        //type: Buffer,
-        required: false
     },
 
     bornDate: {
         type: Date,
-        required: false
     },
 
     email: {
         type: String,
         unique: false,
-        required: false
     },
 
     phone: {
         type: String,
-        required: false
     },
 
     residentialPhone: {
         type: String,
-        required: false
     },
 
     photoUrl: {
