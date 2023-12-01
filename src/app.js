@@ -25,6 +25,7 @@ const Delivery = require('./models/delivery');
 
 //Carrega rotas
 const personRoutes = require('./routes/person');
+const condominiumRoutes = require('./routes/condominium');
 
 app.use(cors());
 app.use(bodyParser.json({ limit: '200mb', extend: true }));
@@ -33,5 +34,6 @@ const { dabataseConnection } = require('./db/database');
 dabataseConnection();
 
 app.use('/person', personRoutes);
+app.use('/condominium', condominiumRoutes);
 
 module.exports = app;

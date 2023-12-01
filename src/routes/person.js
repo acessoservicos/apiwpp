@@ -5,6 +5,6 @@ const router = express.Router();
 
 const controller = require('../controllers/person');
 
-router.get('/findPersonByPhone/:phone', controller.findPersonByPhone);
+router.get('/:phone', controller.findPersonByPhone);
 
 module.exports = router;
