@@ -11,3 +11,12 @@ exports.findPersonByPhone = async (req, res) => {
         res.status(HttpStatusCodes.StatusCodes.BAD_REQUEST).send({ "message": error.message });
     }
 };
+
+exports.findPersonByCpf = async (req, res) => {
+    try {
+        let person = await service.findPersonByCpf(req.params.cpf);
+        res.status(HttpStatusCodes.StatusCodes.OK).send(person);
+    } catch (error) {
+        res.status(HttpStatusCodes.StatusCodes.BAD_REQUEST).send({ "message": error.message });
+    }
+};
