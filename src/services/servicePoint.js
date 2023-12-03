@@ -2,6 +2,9 @@
 
 const repository = require('../repositories/servicePoint');
 
+const condominiumService = require('./condominium');
+const personService = require('./person');
+
 exports.findByCondominium = async (condominium) => {
     let servicePoints = await repository.find();
 
@@ -15,4 +18,18 @@ exports.findByCondominium = async (condominium) => {
     };
 
     return servicePointCondominium[0];
+};
+
+exports.findByPerson = async (phone) => {
+    let person = await personService.findPersonByPhone(phone);
+
+    if (!person) {
+        return 613;
+    }
+    
+    let condominium = await condominiumService.findCondominiumByPerson(person);
+
+    let servicePoint = await this.findByCondominium(condominium);
+
+    return servicePoint.voipId;
 };
