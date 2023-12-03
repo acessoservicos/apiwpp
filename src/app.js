@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
+const HttpStatusCode = require('http-status-codes');
 
 const app = express();
 
@@ -22,6 +24,22 @@ const DropDelivery = require('./models/locker/dropDelivery');
 const Vehicle = require('./models/vehicle');
 const Garage = require('./models/garage');
 const Delivery = require('./models/delivery');
+
+app.use((req, res, next) => {
+    const tokenHeader = req.headers["authorization"];
+
+    if (!tokenHeader) {
+        return res.status(HttpStatusCode.StatusCodes.UNAUTHORIZED).json({ "message": 'Acesso não autorizado!' });
+    }
+
+    try {
+        jwt.verify(tokenHeader, process.env.JWT_SECRET);
+        next();
+    
+    } catch (error) {
+        return res.status(HttpStatusCode.StatusCodes.BAD_REQUEST).send({ "message": error.message });
+    }
+});
 
 //Carrega rotas
 const personRoutes = require('./routes/person');
