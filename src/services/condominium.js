@@ -8,29 +8,46 @@ const floorService = require('../services/floor');
 const blockService = require('../services/block');
 
 exports.findCondominiumByPerson = async (person) => {
-    let resident = await residentService.findResidentByPerson(person);
+    // let resident = await residentService.findResidentByPerson(person);
 
-    let apartments = [];
-    for (let apartment of resident.apartments) {
-        apartments.push(await apartmentService.findById(apartment._id));
-    };
+    // let apartments = [];
+    // for (let apartment of resident.apartments) {
+    //     apartments.push(await apartmentService.findById(apartment._id));
+    // };
 
-    let floors = [];
-    for (let apartment of apartments) {
-        floors.push(await floorService.findById(apartment[0].floor))
-    };
+    // let floors = [];
+    // for (let apartment of apartments) {
+    //     floors.push(await floorService.findById(apartment[0].floor))
+    // };
 
-    let blocks = [];
-    for (let floor of floors) {
-        blocks.push(await blockService.findById(floor[0].block));
-    }
+    // let blocks = [];
+    // for (let floor of floors) {
+    //     blocks.push(await blockService.findById(floor[0].block));
+    // }
 
-    let condominiums = [];
-    for (let block of blocks) {
-        condominiums.push(await this.findById(block[0].condominium));
-    }
+    // let condominiums = [];
+    // for (let block of blocks) {
+    //     condominiums.push(await this.findById(block[0].condominium));
+    // }
 
-    return condominiums;
+    // return condominiums;
+    const resident = await residentService.findResidentByPerson(person);
+
+    const condominiums = await Promise.all(
+        resident.apartments.map(async (apartment) => {
+            const apartmentDetails = await apartmentService.findById(apartment._id);
+            const floorDetails = await floorService.findById(apartmentDetails[0].floor);
+            const blockDetails = await blockService.findById(floorDetails[0].block);
+            const condominiumDetails = await this.findById(blockDetails[0].condominium);
+
+            // Certifique-se de que condominiumDetails é um array
+            //return Array.isArray(condominiumDetails) ? condominiumDetails : [condominiumDetails];
+            return condominiumDetails;
+        })
+    );
+
+    // Concatenar arrays de condominiums em um único array
+    return [].concat(...condominiums);
 };
 
 exports.findById = async (id) => {
