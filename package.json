@@ -3,6 +3,10 @@
   "description": "API de automação do WhatsApp da Acesso",
   "version": "1.0.0",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/devs_condominios/whatsapp.git"
+  },
   "scripts": {
     "start": "set NODE_ENV=dev && node ./bin/server.js",
     "dev": "set NODE_ENV=dev && node --watch ./bin/server.js",
