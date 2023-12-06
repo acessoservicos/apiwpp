@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  api:
+    image: IMAGE_TAG
+    volumes:
+      - .:/home/node
+      - /home/node/node_modules
+    environment:
+      DATABASEURL: mongodb://BackEndAcesso:CcTf4iXoKd@mongo:27017/Acesso?authMecanism=SCRAM-SHA-1&authSource=admin
+      JWT_SECRET: MIHcAgEBBEIByH5ikLfv1qCK9wg6CtpfAapgdJsrYm7PoGmw7SPa/Vsw11afwpCf
+    ports:
+      - 3007:3007
+    command: pm2-runtime 'npm start'
+    depends_on: 
+      - mongo
+    restart: always
+
+  mongo:
+    image: mongo:4.2.3
+    command: [--auth]
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: BackEndAcesso
+      MONGO_INITDB_ROOT_PASSWORD: CcTf4iXoKd
+    ports:
+      - 27017:27017
+    volumes:
+      - ./volumes/db:/data/db
+    restart: always    
