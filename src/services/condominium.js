@@ -40,13 +40,10 @@ exports.findCondominiumByPerson = async (person) => {
             const blockDetails = await blockService.findById(floorDetails[0].block);
             const condominiumDetails = await this.findById(blockDetails[0].condominium);
 
-            // Certifique-se de que condominiumDetails é um array
-            //return Array.isArray(condominiumDetails) ? condominiumDetails : [condominiumDetails];
             return condominiumDetails;
         })
     );
 
-    // Concatenar arrays de condominiums em um único array
     return [].concat(...condominiums);
 };
 
