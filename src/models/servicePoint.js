@@ -34,6 +34,10 @@ const schema = new Schema({
         type: Number
     },
 
+    chatwootId: {
+        type: String
+    },
+
     wppPhone: {
         type: String
     }

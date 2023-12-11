@@ -6,6 +6,13 @@ const condominiumService = require('./condominium');
 const personService = require('./person');
 
 exports.findByCondominium = async (condominium) => {
+    let condominiumInfo = await condominiumService.findById(condominium);
+
+    if (!condominiumInfo[0]._id) {
+        condominium = condominium.substring(3);
+        condominium = await condominiumService.findByName(condominium);
+    };
+
     let servicePoints = await repository.find();
 
     let servicePointCondominium = [];

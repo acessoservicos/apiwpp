@@ -30,7 +30,7 @@ exports.findCondominiumByPerson = async (person) => {
     //     condominiums.push(await this.findById(block[0].condominium));
     // }
 
-    // return condominiums;
+    // return [].concat(...condominiums);
     const resident = await residentService.findResidentByPerson(person);
 
     const condominiums = await Promise.all(
@@ -44,10 +44,20 @@ exports.findCondominiumByPerson = async (person) => {
         })
     );
 
+    for (let index = 0; index < condominiums.length; index++) {
+        console.log(`${index + 1}- ${condominiums[index][0].name}`)
+        condominiums[index][0].name = `${index + 1}- ${condominiums[index][0].name}`;
+    };
+
     return [].concat(...condominiums);
 };
 
 exports.findById = async (id) => {
     let condominium = await repository.find({ _id: id });
+    return condominium;
+};
+
+exports.findByName = async (name) => {
+    let condominium = await repository.find({ name: name });
     return condominium;
 };
