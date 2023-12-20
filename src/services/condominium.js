@@ -45,7 +45,6 @@ exports.findCondominiumByPerson = async (person) => {
     );
 
     for (let index = 0; index < condominiums.length; index++) {
-        console.log(`${index + 1}- ${condominiums[index][0].name}`)
         condominiums[index][0].name = `${index + 1}- ${condominiums[index][0].name}`;
     };
 

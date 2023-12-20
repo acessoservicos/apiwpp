@@ -15,15 +15,3 @@ services:
     depends_on: 
       - mongo
     restart: always
-
-  mongo:
-    image: mongo:4.2.3
-    command: [--auth]
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: BackEndAcesso
-      MONGO_INITDB_ROOT_PASSWORD: CcTf4iXoKd
-    ports:
-      - 27017:27017
-    volumes:
-      - ./volumes/db:/data/db
-    restart: always    
