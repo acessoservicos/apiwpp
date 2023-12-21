@@ -1,8 +1,8 @@
 FROM node:20.10.0
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY package*.json ./
+COPY package.json package-lock.json ./
 
 RUN npm install
 
