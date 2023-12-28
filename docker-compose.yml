@@ -1,36 +1,15 @@
 version: '3.7'
 
 services:
-  apiwpp:
+  api:
     image: registry.gitlab.com/devs_condominios/whatsapp:latest
-    command: ['npm start']
     volumes:
-      - apiwpp_modules:/home/node/node_modules
-    networks:
-      - traefik_public
+      - .:/home/node
+      - /home/node/node_modules
     environment:
       DATABASEURL: mongodb://BackEndAcesso:CcTf4iXoKd@api.acesso.srv.br:27017/Acesso?authMechanism=SCRAM-SHA-1&authSource=admin
       JWT_SECRET: MIHcAgEBBEIByH5ikLfv1qCK9wg6CtpfAapgdJsrYm7PoGmw7SPa/Vsw11afwpCf
-    deploy:
-      mode: replicated
-      replicas: 1
-      placement:
-        constraints:
-        - node.role == manager
-      labels:
-      - traefik.enable=1
-      - traefik.http.routers.apiwpp.rule=Host(`api.wpp.acesso`)
-      - traefik.http.routers.apiwpp.entrypoints=websecure
-      - traefik.http.routers.apiwpp.priority=1
-      - traefik.http.routers.apiwpp.tls.certresolver=letsencryptresolver
-      - traefik.http.routers.apiwpp.service=apiwpp
-      - traefik.http.services.apiwpp.loadbalancer.server.port=3007
-      - traefik.http.services.apiwpp.loadbalancer.passHostHeader=1
-volumes:
-  apiwpp_modules:
-    external: true
-    name: apiwpp_modules
-networks:
-  traefik_public:
-    name: traefik_public
-    external: true
+    ports:
+      - 3007:3007
+    command: 'npm start'
+    restart: always
