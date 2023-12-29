@@ -1,12 +1,10 @@
 FROM node:20.10.0
 
-WORKDIR /app
+COPY . .
 
-COPY package.json package-lock.json ./
+WORKDIR ../
 
 RUN npm install
-
-COPY . .
 
 EXPOSE 3007
 
