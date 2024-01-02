@@ -5,7 +5,7 @@ const repository = require('../repositories/person');
 exports.findPersonByPhone = async (phone) => {
     let phoneFormated;
 
-    if (phone.length > 11) {
+    if (phone.length < 11) {
         let ddd = phone.substring(0,2);
         phoneFormated = ddd + 9 + phone.substring(2);
     }
