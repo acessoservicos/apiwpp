@@ -3,9 +3,6 @@
   "description": "API de automação do WhatsApp da Acesso",
   "version": "1.0.0",
   "main": "index.js",
-  "engines": {
-    "node": "18.x"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://gitlab.com/devs_condominios/whatsapp.git"
