@@ -19,6 +19,7 @@ exports.findPersonByPhone = async (phone) => {
 };
 
 exports.findPersonByCpf = async (cpf) => {
-    let person = await repository.find({ cpf: cpf });
+    let cpfFormated = cpf.replace(/[.\-/]/g, '');
+    let person = await repository.find({ cpf: cpfFormated });
     return person;
 };
