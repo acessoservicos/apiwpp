@@ -9,6 +9,10 @@ exports.findPersonByPhone = async (phone) => {
         let ddd = phone.substring(0,2);
         phoneFormated = ddd + 9 + phone.substring(2);
     }
+
+    if (phone.substring(0,2) == '55') {
+        phoneFormated = phone.substring(2);
+    }
     
     let person = await repository.find({ phone: phoneFormated?phoneFormated:phone });
     return person;
